@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --with-features=huge --disable-gui
+make
+make DESTDIR="$1" install
