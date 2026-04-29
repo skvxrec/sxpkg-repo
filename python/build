@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --enable-optimizations
+make
+make DESTDIR="$1" install
