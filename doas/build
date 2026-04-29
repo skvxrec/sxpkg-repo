@@ -2,4 +2,3 @@
 ./configure --prefix=/usr --sysconfdir=/etc --with-pam
 make
 make DESTDIR="$1" install
-chmod u+s "$1/usr/bin/doas"
