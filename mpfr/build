@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --with-gmp=/usr
+make
+make DESTDIR="$1" install

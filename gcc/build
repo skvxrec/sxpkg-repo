@@ -1,0 +1,11 @@
+#!/bin/sh
+mkdir build
+cd build
+../configure --prefix=/usr \
+  --enable-languages=c,c++ \
+  --disable-multilib \
+  --with-gmp=/usr \
+  --with-mpfr=/usr \
+  --with-mpc=/usr
+make
+make DESTDIR="$1" install
