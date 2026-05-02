@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --enable-shared
+ABI=64 ./configure --prefix=/usr --enable-shared
 make
 make DESTDIR="$1" install
