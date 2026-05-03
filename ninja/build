@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p "$1/usr/bin"
+cp ninja "$1/usr/bin/ninja"
+chmod +x "$1/usr/bin/ninja"

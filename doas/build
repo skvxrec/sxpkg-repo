@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --sysconfdir=/etc --with-pam
+./configure --prefix=/usr --sysconfdir=/etc --without-pam --with-shadow
 make -j$(nproc)
 make DESTDIR="$1" install
