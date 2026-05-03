@@ -5,6 +5,7 @@ cd build
   --enable-languages=c,c++ \
   --disable-multilib \
   --disable-libsanitizer \
+  --without-isl \
   --with-gmp=/usr \
   --with-mpfr=/usr \
   --with-mpc=/usr
