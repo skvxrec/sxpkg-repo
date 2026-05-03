@@ -1,0 +1,3 @@
+#!/bin/sh
+make EFIDIR=/boot/efi -j$(nproc)
+make EFIDIR=/boot/efi DESTDIR="$1" install
