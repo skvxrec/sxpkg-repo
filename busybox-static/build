@@ -1,6 +1,7 @@
 #!/bin/sh
 make defconfig
-sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/' .config
+echo "CONFIG_STATIC=y" >> .config
+make oldconfig
 sed -i 's/CONFIG_TC=y/# CONFIG_TC is not set/' .config
 sed -i 's/CONFIG_NANDWRITE=y/# CONFIG_NANDWRITE is not set/' .config
 sed -i 's/CONFIG_NANDDUMP=y/# CONFIG_NANDDUMP is not set/' .config
