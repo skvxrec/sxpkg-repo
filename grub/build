@@ -2,5 +2,6 @@
 ./configure --prefix=/usr --sbindir=/sbin --sysconfdir=/etc \
   --disable-efiemu --disable-grub-themes --disable-nls \
   --with-platform=pc --target=x86_64
+touch grub-core/extra_deps.lst
 make -j$(nproc)
 make DESTDIR="$1" install
