@@ -16,6 +16,6 @@ scripts/config --disable CONFIG_EXT4_USE_FOR_EXT2
 make CC=gcc CONFIG_SHELL=/usr/bin/bash olddefconfig
 make CC=gcc CONFIG_SHELL=/usr/bin/bash -j$(nproc)
 mkdir -p "$1/lib/modules"
-make CC=gcc CONFIG_SHELL=/usr/bin/bash INSTALL_MOD_PATH="$1" modules_install
+make CC=gcc CONFIG_SHELL=/usr/bin/bash INSTALL_MOD_PATH="$1" DEPMOD=true modules_install
 mkdir -p "$1/boot"
 cp arch/x86_64/boot/bzImage "$1/boot/vmlinuz"
