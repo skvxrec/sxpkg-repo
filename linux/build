@@ -1,8 +1,11 @@
 #!/bin/sh
-make CC=gcc defconfig
+make CC=gcc CONFIG_SHELL=/usr/bin/bash defconfig
 scripts/config --disable CONFIG_DEBUG_INFO_BTF
-make CC=gcc olddefconfig
-make CC=gcc -j$(nproc)
-make CC=gcc INSTALL_MOD_PATH="$1" modules_install
+scripts/config --disable CONFIG_STACK_VALIDATION
+scripts/config --disable CONFIG_UNWINDER_ORC
+scripts/config --enable CONFIG_UNWINDER_FRAME_POINTER
+make CC=gcc CONFIG_SHELL=/usr/bin/bash olddefconfig
+make CC=gcc CONFIG_SHELL=/usr/bin/bash -j$(nproc)
+make CC=gcc CONFIG_SHELL=/usr/bin/bash INSTALL_MOD_PATH="$1" modules_install
 mkdir -p "$1/boot"
 cp arch/x86_64/boot/bzImage "$1/boot/vmlinuz"
