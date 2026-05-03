@@ -1,4 +1,4 @@
 #!/bin/sh
-PREFIX=/usr ./configure.sh
+CC=gcc PREFIX=/usr ./configure.sh
 make -j$(nproc)
 make DESTDIR="$1" install
