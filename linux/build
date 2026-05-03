@@ -6,4 +6,3 @@ make CC=gcc -j$(nproc)
 make CC=gcc INSTALL_MOD_PATH="$1" modules_install
 mkdir -p "$1/boot"
 cp arch/x86_64/boot/bzImage "$1/boot/vmlinuz"
-cp System.map "$1/boot/System.map"
