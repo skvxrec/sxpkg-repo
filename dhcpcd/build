@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --sysconfdir=/etc --runstatedir=/run
+./configure --prefix=/usr --sysconfdir=/etc --runstatedir=/run --with-init-style=openrc
 make -j$(nproc)
 make DESTDIR="$1" install
