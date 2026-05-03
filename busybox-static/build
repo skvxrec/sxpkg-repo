@@ -1,0 +1,6 @@
+#!/bin/sh
+make defconfig
+sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/' .config
+make -j$(nproc)
+mkdir -p "$1/usr/lib/busybox-static"
+cp busybox "$1/usr/lib/busybox-static/busybox"
