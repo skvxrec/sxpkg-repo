@@ -5,3 +5,11 @@
 touch grub-core/extra_deps.lst
 make -j$(nproc)
 make DESTDIR="$1" install
+
+make distclean
+./configure --prefix=/usr --sbindir=/sbin --sysconfdir=/etc \
+  --disable-efiemu --disable-grub-themes --disable-nls \
+  --with-platform=efi --target=x86_64
+touch grub-core/extra_deps.lst
+make -j$(nproc)
+make DESTDIR="$1" install
