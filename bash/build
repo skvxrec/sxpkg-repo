@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --without-bash-malloc
+make -j$(nproc)
+make DESTDIR="$1" install
