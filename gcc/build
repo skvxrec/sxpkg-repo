@@ -4,6 +4,7 @@ cd build
 ../configure --prefix=/usr \
   --enable-languages=c,c++ \
   --disable-multilib \
+  --disable-libsanitizer \
   --with-gmp=/usr \
   --with-mpfr=/usr \
   --with-mpc=/usr
