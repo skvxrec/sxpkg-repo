@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --sysconfdir=/etc --runstatedir=/run
+make -j$(nproc)
+make DESTDIR="$1" install
