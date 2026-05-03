@@ -1,4 +1,4 @@
 #!/bin/sh
 ./configure --prefix=/usr --with-gmp=/usr
-make
+make -j$(nproc)
 make DESTDIR="$1" install

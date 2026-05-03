@@ -1,4 +1,4 @@
 #!/bin/sh
 ABI=64 ./configure --prefix=/usr --enable-shared
-make
+make -j$(nproc)
 make DESTDIR="$1" install
