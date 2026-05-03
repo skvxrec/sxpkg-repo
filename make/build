@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --without-guile
+make -j$(nproc)
+make DESTDIR="$1" install

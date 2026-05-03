@@ -2,3 +2,4 @@ gmp
 mpfr
 mpc
 zlib
+make
