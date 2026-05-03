@@ -1,9 +1,9 @@
 #!/bin/sh
-make defconfig
+make CC=gcc defconfig
 scripts/config --disable CONFIG_DEBUG_INFO_BTF
-make olddefconfig
-make -j$(nproc)
-make INSTALL_MOD_PATH="$1" modules_install
+make CC=gcc olddefconfig
+make CC=gcc -j$(nproc)
+make CC=gcc INSTALL_MOD_PATH="$1" modules_install
 mkdir -p "$1/boot"
 cp arch/x86_64/boot/bzImage "$1/boot/vmlinuz"
 cp System.map "$1/boot/System.map"
