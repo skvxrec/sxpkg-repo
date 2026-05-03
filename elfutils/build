@@ -1,0 +1,5 @@
+#!/bin/sh
+./configure --prefix=/usr --disable-debuginfod --disable-libdebuginfod \
+  --without-bzip2 --without-lzma --without-zstd --disable-nls
+make -j$(nproc)
+make DESTDIR="$1" install
