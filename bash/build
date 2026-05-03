@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --without-bash-malloc
+./configure --prefix=/usr --without-bash-malloc --with-curses=no --disable-readline
 make -j$(nproc)
 make DESTDIR="$1" install
