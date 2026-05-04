@@ -1,0 +1,6 @@
+#!/bin/sh
+PYVER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+SITE="$1/usr/lib/python${PYVER}/site-packages"
+mkdir -p "$SITE"
+cp -r mako "$SITE/"
+cp -r Mako-*.dist-info "$SITE/" 2>/dev/null || true
