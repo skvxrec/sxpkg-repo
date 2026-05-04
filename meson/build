@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 setup.py install --prefix=/usr --root="$1"
+python3 -m pip install --prefix=/usr --root="$1" --no-build-isolation --no-deps .
