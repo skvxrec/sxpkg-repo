@@ -1,3 +1,5 @@
 #!/bin/sh
 make prefix=/usr NO_GETTEXT=1 NO_TCLTK=1 -j$(nproc)
 make prefix=/usr NO_GETTEXT=1 NO_TCLTK=1 DESTDIR="$1" install
+mkdir -p "$1/etc"
+printf "[http]\n\tsslVerify = false\n" > "$1/etc/gitconfig"
