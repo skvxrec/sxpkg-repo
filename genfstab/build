@@ -1,0 +1,2 @@
+#!/bin/sh
+install -Dm755 genfstab "$1/usr/bin/genfstab"
