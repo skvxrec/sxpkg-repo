@@ -3,6 +3,7 @@ cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_CTEST=OFF \
-    -DBUILD_SHARED_LIBS=OFF
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_OPT=OFF
 cmake --build build -j$(nproc)
 DESTDIR="$1" cmake --install build
