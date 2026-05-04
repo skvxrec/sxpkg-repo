@@ -14,7 +14,6 @@ meson setup build \
     -Dglvnd=disabled \
     -Dgallium-vdpau=disabled \
     -Dgallium-va=disabled \
-
     -Dbuildtype=release
 ninja -C build
 DESTDIR="$1" ninja -C build install

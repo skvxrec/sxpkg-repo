@@ -2,10 +2,13 @@
 cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_CXX_FLAGS="-fpermissive" \
+    -DCMAKE_C_FLAGS="-w" \
+    -DCMAKE_CXX_FLAGS="-w -fpermissive" \
     -DENABLE_CTEST=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DENABLE_OPT=OFF \
-    -DENABLE_SPVREMAPPER=OFF
+    -DENABLE_SPVREMAPPER=OFF \
+    -DGLSLANG_TESTS=OFF \
+    -DENABLE_HLSL=OFF
 cmake --build build -j$(nproc)
 DESTDIR="$1" cmake --install build
