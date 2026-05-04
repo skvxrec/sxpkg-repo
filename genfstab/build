@@ -1,2 +1,70 @@
 #!/bin/sh
-install -Dm755 genfstab "$1/usr/bin/genfstab"
+mkdir -p "$1/usr/bin"
+cat > "$1/usr/bin/genfstab" << 'SCRIPT'
+#!/bin/sh
+# genfstab - generate fstab entries from mounted filesystems
+
+usage() {
+    echo "usage: genfstab [-U] <root>"
+    exit 1
+}
+
+use_uuid=0
+if [ "$1" = "-U" ]; then
+    use_uuid=1
+    shift
+fi
+
+ROOT="${1:-/}"
+
+[ -z "$1" ] && usage
+
+while IFS= read -r line; do
+    dev=$(echo "$line" | awk '{print $1}')
+    mp=$(echo "$line" | awk '{print $2}')
+    fs=$(echo "$line" | awk '{print $3}')
+    opts=$(echo "$line" | awk '{print $4}')
+
+    # skip pseudo filesystems
+    case "$fs" in
+        proc|sysfs|devtmpfs|devpts|tmpfs|cgroup*|pstore|bpf|tracefs|securityfs|configfs|autofs|hugetlbfs|mqueue|fusectl|efivarfs)
+            ;;
+        *)
+            # strip the root prefix from mountpoint
+            if [ "$mp" = "$ROOT" ]; then
+                real_mp="/"
+            else
+                real_mp="${mp#$ROOT}"
+            fi
+
+            if [ $use_uuid -eq 1 ]; then
+                uuid=$(blkid -s UUID -o value "$dev" 2>/dev/null)
+                if [ -n "$uuid" ]; then
+                    dev="UUID=$uuid"
+                fi
+            fi
+
+            dump=0
+            pass=0
+            [ "$real_mp" = "/" ] && pass=1
+
+            printf "%-23s %-15s %-7s %-15s %s %s\n" \
+                "$dev" "$real_mp" "$fs" "$opts" "$dump" "$pass"
+            ;;
+    esac
+
+    # always add these pseudo filesystems
+    case "$fs" in
+        proc|sysfs|devtmpfs|devpts|tmpfs)
+            case "$mp" in
+                "$ROOT/proc")  printf "%-23s %-15s %-7s %-15s %s %s\n" "proc"     "/proc"    "proc"     "nosuid,noexec,nodev" "0" "0" ;;
+                "$ROOT/sys")   printf "%-23s %-15s %-7s %-15s %s %s\n" "sysfs"    "/sys"     "sysfs"    "nosuid,noexec,nodev" "0" "0" ;;
+                "$ROOT/dev")   printf "%-23s %-15s %-7s %-15s %s %s\n" "devtmpfs" "/dev"     "devtmpfs" "nosuid"              "0" "0" ;;
+                "$ROOT/dev/pts") printf "%-23s %-15s %-7s %-15s %s %s\n" "devpts" "/dev/pts" "devpts"   "nosuid,noexec"       "0" "0" ;;
+                "$ROOT/run")   printf "%-23s %-15s %-7s %-15s %s %s\n" "tmpfs"    "/run"     "tmpfs"    "nosuid,nodev"        "0" "0" ;;
+            esac
+            ;;
+    esac
+done < /proc/mounts | sort -u
+SCRIPT
+chmod 755 "$1/usr/bin/genfstab"
