@@ -1,5 +1,5 @@
 #!/bin/sh
-./configure --prefix=/usr
+./configure --prefix=/usr --enable-static --disable-shared
 make -j$(nproc)
 make DESTDIR="$1" install
 ln -sf pkgconf "$1/usr/bin/pkg-config"
