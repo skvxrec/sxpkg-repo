@@ -1,2 +1,15 @@
 #!/bin/sh
-python3 -m pip install --prefix=/usr --root="$1" --no-build-isolation --no-deps .
+PYVER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+SITE="$1/usr/lib/python${PYVER}/site-packages"
+
+mkdir -p "$SITE" "$1/usr/bin"
+
+cp -r mesonbuild "$SITE/"
+
+cat > "$1/usr/bin/meson" << 'EOF'
+#!/usr/bin/env python3
+import sys
+from mesonbuild.mesonmain import main
+sys.exit(main())
+EOF
+chmod +x "$1/usr/bin/meson"
