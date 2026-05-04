@@ -1,0 +1,6 @@
+meson
+ninja
+libdrm
+python-mako
+expat
+zlib
