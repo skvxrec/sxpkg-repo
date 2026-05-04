@@ -11,9 +11,7 @@ meson setup build \
     -Dllvm=disabled \
     -Dshared-llvm=disabled \
     -Dplatforms=x11 \
-    -Dvdpau=disabled \
-    -Dva=disabled \
-    -Dglvnd=false \
+    -Dglvnd=disabled \
     -Dbuildtype=release
 ninja -C build
 DESTDIR="$1" ninja -C build install
