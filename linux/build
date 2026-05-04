@@ -17,6 +17,8 @@ scripts/config --enable CONFIG_FB
 scripts/config --enable CONFIG_FB_EFI
 scripts/config --enable CONFIG_FRAMEBUFFER_CONSOLE
 scripts/config --enable CONFIG_VGA_CONSOLE
+scripts/config --enable CONFIG_DEVTMPFS
+scripts/config --enable CONFIG_DEVTMPFS_MOUNT
 make CC=gcc CONFIG_SHELL=/usr/bin/bash olddefconfig
 make CC=gcc CONFIG_SHELL=/usr/bin/bash -j$(nproc)
 mkdir -p "$1/lib/modules"
