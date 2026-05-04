@@ -20,7 +20,7 @@ scripts/config --enable CONFIG_VGA_CONSOLE
 scripts/config --enable CONFIG_DEVTMPFS
 scripts/config --enable CONFIG_DEVTMPFS_MOUNT
 make CC=gcc CONFIG_SHELL=/usr/bin/bash olddefconfig
-make CC=gcc CONFIG_SHELL=/usr/bin/bash KCFLAGS="-Wno-error=unterminated-string-initialization" -j$(nproc)
+make CC=gcc CONFIG_SHELL=/usr/bin/bash -j$(nproc)
 mkdir -p "$1/lib/modules"
 make CC=gcc CONFIG_SHELL=/usr/bin/bash INSTALL_MOD_PATH="$1" DEPMOD=true modules_install
 mkdir -p "$1/boot"

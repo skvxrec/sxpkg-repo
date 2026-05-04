@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --disable-nls --disable-werror
+make -j$(nproc)
+make DESTDIR="$1" install
