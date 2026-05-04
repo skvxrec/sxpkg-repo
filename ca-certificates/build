@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p "$1/etc/ssl/certs"
+cp cacert.pem "$1/etc/ssl/certs/ca-certificates.crt"
+ln -sf ca-certificates.crt "$1/etc/ssl/certs/ca-bundle.crt"
