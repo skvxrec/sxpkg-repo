@@ -1,4 +1,7 @@
 #!/bin/sh
+# GCC 14 + glibc mismatch: __pthread_cond_s changed but _GTHREAD_COND_INIT wasn't updated
+sed -i 's/= _GTHREAD_COND_INIT/= {}/' /usr/include/c++/14.2.0/ext/concurrence.h 2>/dev/null || true
+
 cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_BUILD_TYPE=Release \
