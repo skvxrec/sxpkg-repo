@@ -1,5 +1,6 @@
 meson
 ninja
+pkgconf
 libdrm
 python-mako
 expat

@@ -1,4 +1,5 @@
 #!/bin/sh
+export PYTHONPATH=$(python3 -c "import site; print(site.getsitepackages()[0])")
 meson setup build \
     --prefix=/usr \
     -Dgallium-drivers=nouveau,swrast \
