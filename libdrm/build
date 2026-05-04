@@ -1,0 +1,12 @@
+#!/bin/sh
+meson setup build \
+    --prefix=/usr \
+    -Dudev=false \
+    -Dtests=false \
+    -Dnouveau=enabled \
+    -Dintel=disabled \
+    -Damdgpu=disabled \
+    -Dradeon=disabled \
+    -Dvmwgfx=disabled
+ninja -C build
+DESTDIR="$1" ninja -C build install
