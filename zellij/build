@@ -1,0 +1,4 @@
+#!/bin/sh
+cargo build --release
+mkdir -p "$1/usr/bin"
+cp target/release/zellij "$1/usr/bin/"
