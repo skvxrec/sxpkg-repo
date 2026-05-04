@@ -5,3 +5,4 @@ libdrm
 python-mako
 expat
 zlib
+glslang
