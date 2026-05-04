@@ -1,10 +1,9 @@
 #!/bin/sh
-PYVER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-SITE="$1/usr/lib/python${PYVER}/site-packages"
+SITE=$(python3 -c "import site; print(site.getsitepackages()[0])")
 
-mkdir -p "$SITE" "$1/usr/bin"
+mkdir -p "$1$SITE" "$1/usr/bin"
 
-cp -r mesonbuild "$SITE/"
+cp -r mesonbuild "$1$SITE/"
 
 cat > "$1/usr/bin/meson" << 'EOF'
 #!/usr/bin/env python3
