@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p "$1/usr/bin" "$1/usr/share/cmake"
+cp bin/cmake bin/ctest bin/cpack "$1/usr/bin/"
+cp -r share/cmake-* "$1/usr/share/"
