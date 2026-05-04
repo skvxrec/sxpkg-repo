@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --with-ssl=openssl
+./configure --prefix=/usr --with-ssl=openssl --with-ca-certificate=/etc/ssl/certs/ca-certificates.crt
 make -j$(nproc)
 make DESTDIR="$1" install

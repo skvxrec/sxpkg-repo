@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --with-openssl --without-libpsl --disable-manual --without-ca-embed
+./configure --prefix=/usr --with-openssl --without-libpsl --disable-manual --without-ca-embed --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 make -j$(nproc)
 make DESTDIR="$1" install
