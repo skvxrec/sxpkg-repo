@@ -1,7 +1,7 @@
 #!/bin/sh
-# GCC 14 + glibc mismatch: __pthread_cond_s changed but _GTHREAD_COND_INIT wasn't updated
-find /usr/include/c++ -name "gthr-posix.h" | xargs sed -i 's/define _GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/define _GTHREAD_COND_INIT {}/' 2>/dev/null || true
-find /usr/include/c++ -name "concurrence.h" | xargs sed -i 's/= _GTHREAD_COND_INIT/= {}/' 2>/dev/null || true
+# Remove __GTHREAD_COND_INIT so concurrence.h falls back to dynamic init via
+# __GTHREAD_COND_INIT_FUNCTION (pthread_cond_init), avoiding the glibc struct mismatch
+find /usr/include/c++ -name "gthr-posix.h" | xargs sed -i '/define __GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/d' 2>/dev/null || true
 
 cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
