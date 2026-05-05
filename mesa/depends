@@ -6,3 +6,4 @@ python-mako
 expat
 zlib
 glslang
+libX11

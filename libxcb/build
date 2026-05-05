@@ -1,0 +1,5 @@
+#!/bin/sh
+export PYTHONPATH=$(python3 -c "import site; print(site.getsitepackages()[0])")
+./configure --prefix=/usr --without-doxygen
+make -j$(nproc)
+make DESTDIR="$1" install
