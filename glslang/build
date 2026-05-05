@@ -1,17 +1,14 @@
 #!/bin/sh
-# Fix GCC 14 + glibc mismatch: __pthread_cond_s layout changed
-# gthr-default.h defines __GTHREAD_COND_INIT = PTHREAD_COND_INITIALIZER which is now wrong
+# Fix: PTHREAD_COND_INITIALIZER has too many initializers for __pthread_cond_s in newer glibc.
+# Replace __GTHREAD_COND_INIT with {} (zero-init, always correct for pthread_cond_t).
 find /usr/include/c++ \( -name "gthr-default.h" -o -name "gthr-posix.h" \) \
-    | xargs sed -i '/define __GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/d' 2>/dev/null || true
-# Also patch concurrence.h directly as fallback
-find /usr/include/c++ -name "concurrence.h" \
-    | xargs sed -i 's/= __GTHREAD_COND_INIT/= {}/' 2>/dev/null || true
+    | xargs sed -i 's/define __GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/define __GTHREAD_COND_INIT {}/' 2>/dev/null || true
 
 cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_C_FLAGS="-w" \
-    -DCMAKE_CXX_FLAGS="-w -fpermissive" \
+    -DCMAKE_CXX_FLAGS="-w -fpermissive -D__GTHREAD_COND_INIT={}" \
     -DENABLE_CTEST=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DENABLE_OPT=OFF \
