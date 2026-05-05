@@ -1,0 +1,6 @@
+#!/bin/sh
+SITE=$(python3 -c "import site; print(site.getsitepackages()[0])")
+mkdir -p "$1$SITE"
+cp -r src/markupsafe "$1$SITE/"
+mkdir -p "$1$SITE/MarkupSafe-3.0.2.dist-info"
+printf 'Metadata-Version: 2.1\nName: MarkupSafe\nVersion: 3.0.2\n' > "$1$SITE/MarkupSafe-3.0.2.dist-info/METADATA"

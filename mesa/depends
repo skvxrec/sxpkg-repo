@@ -14,3 +14,4 @@ libXfixes
 libXxf86vm
 libxshmfence
 libXrandr
+python-markupsafe
