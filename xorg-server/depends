@@ -1,0 +1,14 @@
+mesa
+libdrm
+pixman
+libxcvt
+libpciaccess
+libxkbfile
+libXfont2
+libXext
+libXfixes
+libXxf86vm
+libxshmfence
+libX11
+xkeyboard-config
+font-util

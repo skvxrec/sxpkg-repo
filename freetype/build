@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --enable-freetype-config
+make -j$(nproc)
+make DESTDIR="$1" install

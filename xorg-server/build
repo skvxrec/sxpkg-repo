@@ -1,0 +1,11 @@
+#!/bin/sh
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+meson setup build \
+    --prefix=/usr \
+    --localstatedir=/var \
+    -Dglamor=false \
+    -Dsystemd_logind=false \
+    -Dxkb_output_dir=/var/lib/xkb \
+    -Dbuildtype=release
+ninja -C build
+DESTDIR="$1" ninja -C build install
