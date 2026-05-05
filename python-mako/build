@@ -1,2 +1,6 @@
 #!/bin/sh
-python3 -m pip install --prefix=/usr --root="$1" --no-deps --no-build-isolation .
+SITE=$(python3 -c "import site; print(site.getsitepackages()[0])")
+mkdir -p "$1$SITE"
+cp -r mako "$1$SITE/"
+mkdir -p "$1$SITE/Mako-1.3.9.dist-info"
+printf 'Metadata-Version: 2.1\nName: Mako\nVersion: 1.3.9\n' > "$1$SITE/Mako-1.3.9.dist-info/METADATA"
