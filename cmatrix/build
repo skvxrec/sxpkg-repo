@@ -1,5 +1,5 @@
 #!/bin/sh
 autoreconf -i # skip if using released tarball
-./configure --prefix /usr
+./cmatrix-2.0/configure --prefix /usr
 make -j$(nproc)
 make install
