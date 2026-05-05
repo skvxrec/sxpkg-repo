@@ -1,0 +1,14 @@
+#!/bin/sh
+./configure \
+    --prefix=/usr \
+    --bindir=/usr/bin \
+    --sbindir=/usr/sbin \
+    --sysconfdir=/etc \
+    --libdir=/usr/lib \
+    --libexecdir=/usr/lib \
+    --with-rootprefix=/usr \
+    --with-rootlibdir=/usr/lib \
+    --disable-manpages \
+    --disable-static
+make -j$(nproc)
+make DESTDIR="$1" install

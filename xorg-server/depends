@@ -12,3 +12,4 @@ libxshmfence
 libX11
 xkeyboard-config
 font-util
+eudev
