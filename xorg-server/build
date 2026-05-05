@@ -6,6 +6,7 @@ meson setup build \
     -Dglamor=false \
     -Dsystemd_logind=false \
     -Dxkb_output_dir=/var/lib/xkb \
+    -Dsecure-rpc=false \
     -Dbuildtype=release
 ninja -C build
 DESTDIR="$1" ninja -C build install
