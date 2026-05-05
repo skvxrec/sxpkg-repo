@@ -1,4 +1,5 @@
 #!/bin/sh
-./configure --prefix=/usr
+autoreconf -i # skip if using released tarball
+./configure --prefix /usr
 make -j$(nproc)
-make DESTDIR="$1" install
+make install
