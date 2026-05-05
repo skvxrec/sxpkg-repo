@@ -9,3 +9,8 @@ expat
 zlib
 glslang
 libX11
+libXext
+libXfixes
+libXxf86vm
+libxshmfence
+libXrandr
