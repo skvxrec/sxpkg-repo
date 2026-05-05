@@ -3,6 +3,7 @@ ninja
 pkgconf
 libdrm
 python-mako
+python-packaging
 expat
 zlib
 glslang
