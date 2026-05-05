@@ -1,0 +1,6 @@
+#!/bin/sh
+make mrproper
+make headers
+find usr/include -type f ! -name '*.h' -delete
+mkdir -p "$1/usr/include"
+cp -r usr/include/. "$1/usr/include/"
