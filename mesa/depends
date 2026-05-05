@@ -4,6 +4,7 @@ pkgconf
 libdrm
 python-mako
 python-packaging
+python-yaml
 expat
 zlib
 glslang
