@@ -1,6 +1,6 @@
 #!/bin/sh
 SITE=$(python3 -c "import site; print(site.getsitepackages()[0])")
 mkdir -p "$1$SITE"
-cp -r packaging "$1$SITE/"
+cp -r packaging "$1$SITE/" 2>/dev/null || cp -r src/packaging "$1$SITE/"
 mkdir -p "$1$SITE/packaging-24.0.dist-info"
 printf 'Metadata-Version: 2.1\nName: packaging\nVersion: 24.0\n' > "$1$SITE/packaging-24.0.dist-info/METADATA"
