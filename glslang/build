@@ -1,7 +1,11 @@
 #!/bin/sh
-# Remove __GTHREAD_COND_INIT so concurrence.h falls back to dynamic init via
-# __GTHREAD_COND_INIT_FUNCTION (pthread_cond_init), avoiding the glibc struct mismatch
-find /usr/include/c++ -name "gthr-posix.h" | xargs sed -i '/define __GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/d' 2>/dev/null || true
+# Fix GCC 14 + glibc mismatch: __pthread_cond_s layout changed
+# gthr-default.h defines __GTHREAD_COND_INIT = PTHREAD_COND_INITIALIZER which is now wrong
+find /usr/include/c++ \( -name "gthr-default.h" -o -name "gthr-posix.h" \) \
+    | xargs sed -i '/define __GTHREAD_COND_INIT PTHREAD_COND_INITIALIZER/d' 2>/dev/null || true
+# Also patch concurrence.h directly as fallback
+find /usr/include/c++ -name "concurrence.h" \
+    | xargs sed -i 's/= __GTHREAD_COND_INIT/= {}/' 2>/dev/null || true
 
 cmake -S . -B build \
     -DCMAKE_INSTALL_PREFIX=/usr \
