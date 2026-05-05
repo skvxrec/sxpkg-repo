@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --without-guile
+./configure --libdir=/usr/lib64 --prefix=/usr --without-guile
 make -j$(nproc)
 make DESTDIR="$1" install

@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --enable-hashes=strong,glibc --enable-obsolete-api=no
+./configure --libdir=/usr/lib64 --prefix=/usr --enable-hashes=strong,glibc --enable-obsolete-api=no
 make -j$(nproc)
 make DESTDIR="$1" install

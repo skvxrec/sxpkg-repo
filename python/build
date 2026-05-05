@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --enable-optimizations
+./configure --libdir=/usr/lib64 --prefix=/usr --enable-optimizations
 make -j$(nproc)
 make DESTDIR="$1" install

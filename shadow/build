@@ -1,5 +1,5 @@
 #!/bin/sh
-./configure CFLAGS="-Dmemset_explicit=memset" \
+./configure --libdir=/usr/lib64 CFLAGS="-Dmemset_explicit=memset" \
     --prefix=/usr \
     --sysconfdir=/etc \
     --disable-static \

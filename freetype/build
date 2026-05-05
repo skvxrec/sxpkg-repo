@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --enable-freetype-config
+./configure --libdir=/usr/lib64 --prefix=/usr --enable-freetype-config
 make -j$(nproc)
 make DESTDIR="$1" install

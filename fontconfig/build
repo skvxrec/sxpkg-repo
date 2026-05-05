@@ -1,6 +1,6 @@
 #!/bin/sh
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
-./configure \
+./configure --libdir=/usr/lib64 \
     --prefix=/usr \
     --sysconfdir=/etc \
     --localstatedir=/var \

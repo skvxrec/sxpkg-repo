@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --prefix=/usr --with-features=huge --disable-gui
+./configure --libdir=/usr/lib64 --prefix=/usr --with-features=huge --disable-gui
 make -j$(nproc)
 make DESTDIR="$1" install
