@@ -5,6 +5,7 @@ meson setup build \
     --localstatedir=/var \
     -Dglamor=false \
     -Dsystemd_logind=false \
+    -Dudev=false \
     -Dxkb_output_dir=/var/lib/xkb \
     -Dbuildtype=release
 ninja -C build
