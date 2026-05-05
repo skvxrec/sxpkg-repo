@@ -1,4 +1,2 @@
 #!/bin/sh
-SITE=$(python3 -c "import site; print(site.getsitepackages()[0])")
-mkdir -p "$1$SITE"
-cp -r mako "$1$SITE/"
+python3 -m pip install --prefix=/usr --root="$1" --no-deps --no-build-isolation .

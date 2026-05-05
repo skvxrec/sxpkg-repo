@@ -1,5 +1,5 @@
 #!/bin/sh
-export PYTHONPATH=$(python3 -c "import site; print(site.getsitepackages()[0])")
+export PYTHONPATH=/usr/lib/python3.13/site-packages
 meson setup build \
     --prefix=/usr \
     -Dgallium-drivers=nouveau,softpipe \
