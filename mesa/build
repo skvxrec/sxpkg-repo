@@ -5,6 +5,7 @@ export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgcon
 rm -rf build
 meson setup build \
     --prefix=/usr \
+    -Dcpp_args="-D__GTHREAD_COND_INIT={}" \
     -Dgallium-drivers=nouveau,softpipe \
     -Dvulkan-drivers= \
     -Dglx=dri \
