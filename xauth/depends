@@ -1,3 +1,4 @@
 libX11
 libXdmcp
 libXau
+libXmu
