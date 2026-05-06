@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p "$1/usr/share/fonts/JetBrainsMono"
+cp *.ttf "$1/usr/share/fonts/JetBrainsMono/"
+fc-cache -fv
