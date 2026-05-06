@@ -1,0 +1,4 @@
+#!/bin/sh
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+cargo build --release
+install -Dm755 target/release/alacritty "$1/usr/bin/alacritty"
