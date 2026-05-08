@@ -1,0 +1,15 @@
+#!/bin/sh
+./configure \
+    --prefix=/usr \
+    --libdir=/usr/lib64 \
+    --sysconfdir=/etc/ssh \
+    --datadir=/usr/share/openssh \
+    --with-privsep-path=/var/lib/sshd \
+    --with-default-path=/usr/bin \
+    --with-superuser-path=/usr/sbin:/usr/bin \
+    --with-pid-dir=/run \
+    --with-pam \
+    --disable-strip
+make -j$(nproc)
+make DESTDIR="$1" install
+mkdir -p "$1/var/lib/sshd"
