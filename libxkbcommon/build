@@ -1,8 +1,8 @@
 #!/bin/sh
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
 meson setup build \
     --prefix=/usr \
-    --libdir=/usr/lib64 \
+    --libdir=/usr/lib \
     -Denable-docs=false \
     -Dbuildtype=release
 ninja -C build

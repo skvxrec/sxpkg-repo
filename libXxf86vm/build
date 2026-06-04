@@ -1,5 +1,5 @@
 #!/bin/sh
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
-./configure --libdir=/usr/lib64 --prefix=/usr
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+./configure --libdir=/usr/lib --prefix=/usr
 make -j$(nproc)
 make DESTDIR="$1" install

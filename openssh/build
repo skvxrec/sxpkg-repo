@@ -1,7 +1,7 @@
 #!/bin/sh
 ./configure \
     --prefix=/usr \
-    --libdir=/usr/lib64 \
+    --libdir=/usr/lib \
     --sysconfdir=/etc/ssh \
     --datadir=/usr/share/openssh \
     --with-privsep-path=/var/lib/sshd \

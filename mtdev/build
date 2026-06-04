@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --libdir=/usr/lib64 --prefix=/usr --disable-static
+./configure --libdir=/usr/lib --prefix=/usr --disable-static
 make -j$(nproc)
 make DESTDIR="$1" install

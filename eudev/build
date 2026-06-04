@@ -1,13 +1,13 @@
 #!/bin/sh
 ./configure \
     --prefix=/usr \
-    --libdir=/usr/lib64 \
+    --libdir=/usr/lib \
     --bindir=/usr/bin \
     --sbindir=/usr/sbin \
     --sysconfdir=/etc \
-    --libexecdir=/usr/lib64 \
+    --libexecdir=/usr/lib \
     --with-rootprefix=/usr \
-    --with-rootlibdir=/usr/lib64 \
+    --with-rootlibdir=/usr/lib \
     --disable-manpages \
     --disable-static
 make -j$(nproc)
