@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --libdir=/usr/lib --prefix=/usr --with-features=huge --disable-gui
+./configure --libdir=/usr/lib --prefix=/usr --with-features=huge --disable-gui --with-tlib=ncursesw
 make -j$(nproc)
 make DESTDIR="$1" install
