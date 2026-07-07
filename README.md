@@ -1,5 +1,5 @@
 # sxpkg-repo
-*it's our repo*
+*it's your repo*
 
 Package build scripts for [sxOS](https://github.com/skvxrec/sxos), used by sxpkg.
 
