@@ -1,6 +1,6 @@
 #!/bin/sh
 export LD_LIBRARY_PATH=/usr/lib
 printf 'lt_cv_ar_interface=gnu\n' > /tmp/gawk.cache
-./configure --cache-file=/tmp/gawk.cache --libdir=/usr/lib --prefix=/usr
+./configure --cache-file=/tmp/gawk.cache --libdir=/usr/lib --prefix=/usr --disable-extensions
 make -j$(nproc)
 make DESTDIR="$1" install
