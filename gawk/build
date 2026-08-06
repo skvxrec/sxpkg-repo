@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure --libdir=/usr/lib --prefix=/usr
+./configure --libdir=/usr/lib --prefix=/usr lt_cv_ar_interface=gnu
 make -j$(nproc)
 make DESTDIR="$1" install
