@@ -21,6 +21,9 @@ scripts/config --enable CONFIG_VGA_CONSOLE
 scripts/config --enable CONFIG_DEVTMPFS
 scripts/config --enable CONFIG_DEVTMPFS_MOUNT
 scripts/config --enable CONFIG_TUN
+scripts/config --enable CONFIG_IPV6
+scripts/config --enable CONFIG_IP_MULTIPLE_TABLES
+scripts/config --enable CONFIG_IPV6_MULTIPLE_TABLES
 make CC=gcc CONFIG_SHELL=/usr/bin/bash olddefconfig
 make CC=gcc CONFIG_SHELL=/usr/bin/bash -j$(nproc)
 mkdir -p "$1/lib/modules"
