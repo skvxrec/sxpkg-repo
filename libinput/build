@@ -1,0 +1,8 @@
+#!/bin/sh
+meson setup build --prefix=/usr --libdir=/usr/lib \
+  -Ddocumentation=false \
+  -Dtests=false \
+  -Dlibwacom=false \
+  -Ddebug-gui=false
+ninja -C build
+DESTDIR="$1" ninja -C build install
