@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --libdir=/usr/lib --prefix=/usr --disable-tcl
+make -j$(nproc)
+make DESTDIR="$1" install

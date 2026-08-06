@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --libdir=/usr/lib --prefix=/usr --sysconfdir=/etc --disable-tests --disable-vlock
+make -j$(nproc)
+make DESTDIR="$1" install
