@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir -p "$1/usr/bin" "$1/usr/lib" "$1/usr/include" "$1/usr/share"
+cp -r bin/. "$1/usr/bin/"
+cp -r lib/. "$1/usr/lib/"
+[ -d include ] && cp -r include/. "$1/usr/include/"
+[ -d share ] && cp -r share/. "$1/usr/share/"
