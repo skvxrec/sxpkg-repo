@@ -1,4 +1,5 @@
 #!/bin/sh
+export LD_LIBRARY_PATH=/usr/lib
 ./configure --libdir=/usr/lib --prefix=/usr --enable-hashes=strong,glibc --enable-obsolete-api=no
 make -j$(nproc)
 make DESTDIR="$1" install
