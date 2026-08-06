@@ -1,0 +1,4 @@
+#!/bin/sh
+export LD_LIBRARY_PATH=/usr/lib
+make -j$(nproc) lib=lib
+make DESTDIR="$1" lib=lib install
