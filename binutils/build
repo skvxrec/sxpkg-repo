@@ -1,6 +1,6 @@
 #!/bin/sh
 mkdir build
 cd build
-../configure --libdir=/usr/lib --prefix=/usr --disable-nls --disable-werror --disable-plugins --disable-gold --disable-gprofng lt_cv_ar_interface=gnu
+../configure --libdir=/usr/lib --prefix=/usr --disable-nls --disable-werror --disable-plugins --disable-gold --disable-gprofng --disable-docs lt_cv_ar_interface=gnu
 make -j$(nproc)
 make DESTDIR="$1" install
