@@ -1,5 +1,9 @@
 #!/bin/sh
-CXXFLAGS="-fpermissive" ./configure --libdir=/usr/lib --prefix=/usr --disable-debuginfod --disable-libdebuginfod \
+CFLAGS="-O2" ./configure --libdir=/usr/lib --prefix=/usr --disable-debuginfod --disable-libdebuginfod \
   --without-bzip2 --without-lzma --without-zstd --disable-nls
-make -j$(nproc)
-make DESTDIR="$1" install
+make -j$(nproc) -C lib
+make -j$(nproc) -C libelf
+make -j$(nproc) -C libdw
+make DESTDIR="$1" -C lib install
+make DESTDIR="$1" -C libelf install
+make DESTDIR="$1" -C libdw install
