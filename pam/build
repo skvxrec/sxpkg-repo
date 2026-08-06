@@ -2,6 +2,6 @@
 export LD_LIBRARY_PATH=/usr/lib
 printf '#!/bin/sh\nexec ar "$@"\n' > /usr/bin/gcc-ar
 chmod +x /usr/bin/gcc-ar
-meson setup build --prefix=/usr
+meson setup build --prefix=/usr --libdir=/usr/lib
 ninja -C build -j$(nproc)
 DESTDIR="$1" ninja -C build install
