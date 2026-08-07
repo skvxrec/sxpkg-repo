@@ -1,2 +1,6 @@
 freetype
 expat
+meson
+ninja
+gperf
+python

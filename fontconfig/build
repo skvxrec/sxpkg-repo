@@ -1,9 +1,13 @@
 #!/bin/sh
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-./configure --libdir=/usr/lib \
-    --prefix=/usr \
-    --sysconfdir=/etc \
-    --localstatedir=/var \
-    --disable-static
-make -j$(nproc)
-make DESTDIR="$1" install
+# Upstream's release mirror stopped at 2.16, and pango needs >= 2.17, so this
+# comes from the gitlab archive instead. That is a git snapshot with no
+# generated configure script — fontconfig builds with meson these days anyway.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    --sysconfdir=/etc --localstatedir=/var \
+    -Dbuildtype=release \
+    -Ddoc=disabled \
+    -Dtests=disabled \
+    -Dtools=enabled
+ninja -C build
+DESTDIR="$1" ninja -C build install
