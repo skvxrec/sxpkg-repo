@@ -1,0 +1,5 @@
+#!/bin/sh
+# Headers only. The NVIDIA driver ships libEGL but no development headers, and
+# mesa here is built gbm-only, so nothing else provides EGL/ or KHR/.
+install -dm755 "$1/usr/include"
+cp -a api/EGL api/KHR "$1/usr/include/"

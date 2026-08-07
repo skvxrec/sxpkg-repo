@@ -1,0 +1,4 @@
+#!/bin/sh
+# Headers only, same reason as egl-headers.
+install -dm755 "$1/usr/include"
+cp -a api/GL api/GLES2 api/GLES3 "$1/usr/include/"
