@@ -1,0 +1,5 @@
+#!/bin/sh
+# Tiny man-page compiler. Several wayland projects (fuzzel, seatd, ...) require
+# it at build time and offer no way to skip their documentation.
+make PREFIX=/usr -j$(nproc)
+make PREFIX=/usr DESTDIR="$1" install
