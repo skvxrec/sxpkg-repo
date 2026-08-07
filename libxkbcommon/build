@@ -7,7 +7,7 @@ meson setup build \
     --prefix=/usr \
     --libdir=/usr/lib \
     -Denable-docs=false \
-    -Denable-xkbregistry=false \
+    -Denable-xkbregistry=true \
     -Dbuildtype=release
 ninja -C build
 DESTDIR="$1" ninja -C build install
