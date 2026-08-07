@@ -11,3 +11,12 @@ harfbuzz
 wayland
 wayland-protocols
 libxkbcommon
+libXinerama
+libXcursor
+libXcomposite
+libXdamage
+libXi
+libXrandr
+libXext
+libX11
+libxcb
