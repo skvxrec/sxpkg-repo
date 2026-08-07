@@ -1,0 +1,6 @@
+libX11
+libXrender
+libXfixes
+xorgproto
+util-macros
+pkgconf

@@ -1,0 +1,10 @@
+gtk3
+libXcomposite
+libXdamage
+libXcursor
+libXi
+libXtst
+alsa-lib
+dbus
+fontconfig
+freetype

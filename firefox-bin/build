@@ -1,0 +1,17 @@
+#!/bin/sh
+# Prebuilt: building firefox from source needs rust, clang, node and hours of
+# compute. Named -bin so it is obvious this one is not built from source.
+#
+# The tarball is a self-contained tree; it goes to /usr/lib/firefox with a
+# launcher on PATH. MOZ_ENABLE_WAYLAND makes it use the wayland backend instead
+# of trying to reach an X server that does not exist here.
+install -dm755 "$1/usr/lib/firefox"
+cp -a . "$1/usr/lib/firefox/"
+
+install -dm755 "$1/usr/bin"
+cat > "$1/usr/bin/firefox" <<'EOS'
+#!/bin/sh
+export MOZ_ENABLE_WAYLAND=1
+exec /usr/lib/firefox/firefox "$@"
+EOS
+chmod 755 "$1/usr/bin/firefox"

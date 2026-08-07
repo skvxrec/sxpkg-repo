@@ -1,0 +1,6 @@
+libX11
+libXext
+libXi
+xorgproto
+util-macros
+pkgconf
