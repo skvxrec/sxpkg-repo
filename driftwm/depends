@@ -1,0 +1,10 @@
+rust
+libdisplay-info
+libinput
+libxkbcommon
+mesa
+seatd
+eudev
+wayland
+libdrm
+pkgconf

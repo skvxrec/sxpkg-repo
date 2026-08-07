@@ -1,0 +1,12 @@
+#!/bin/sh
+# Only the ID tables are wanted (libdisplay-info reads pnp.ids at build time).
+# The modprobe blacklist is skipped: busybox modprobe parses /etc/modprobe.d
+# only partially, and an extra dist blacklist there would be confusing next to
+# the nvidia module setup.
+./configure \
+    --prefix=/usr \
+    --datadir=/usr/share \
+    --libdir=/usr/lib \
+    --disable-blacklist
+make
+make DESTDIR="$1" install

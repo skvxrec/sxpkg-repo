@@ -1,0 +1,8 @@
+#!/bin/sh
+# Smithay-based, so no wlroots. libgbm comes from mesa and loads the NVIDIA
+# backend; EGL and GLES come from the proprietary driver. lib64 has to be first
+# on the pkg-config path since libdrm, libgbm and libdisplay-info live there
+# while seatd and libxkbcommon install into /usr/lib.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+make build
+make PREFIX=/usr DESTDIR="$1" install

@@ -1,0 +1,11 @@
+#!/bin/sh
+# hwdata is a build-time dependency: meson looks up its pkgdatadir through
+# pkg-config to find pnp.ids, which is why /usr/share/pkgconfig has to be on
+# the search path.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build \
+    --prefix=/usr \
+    --libdir=/usr/lib64 \
+    -Dbuildtype=release
+ninja -C build
+DESTDIR="$1" ninja -C build install
