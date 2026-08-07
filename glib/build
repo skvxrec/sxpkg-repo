@@ -1,5 +1,22 @@
 #!/bin/sh
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-meson setup build --prefix=/usr --libdir=/usr/lib -Dbuildtype=release -Dtests=false -Dintrospection=disabled
+
+# This system carries two glibcs: binaries link against 2.42 in /lib64, but the
+# headers in /usr/include are 2.41 and do not declare the C23 free_sized() and
+# free_aligned_sized(). Meson probes for them by linking, finds the symbols in
+# 2.42, sets HAVE_FREE_SIZED, and then the compile fails on an implicit
+# declaration.
+#
+# The symbols really are there at link and run time, so declaring them is
+# correct rather than a workaround for something missing.
+cat > free_sized_decl.h <<'HDR'
+#include <stddef.h>
+void free_sized (void *__ptr, size_t __size);
+void free_aligned_sized (void *__ptr, size_t __alignment, size_t __size);
+HDR
+
+meson setup build --prefix=/usr --libdir=/usr/lib -Dbuildtype=release \
+    -Dtests=false -Dintrospection=disabled \
+    -Dc_args="-include $PWD/free_sized_decl.h"
 ninja -C build
 DESTDIR="$1" ninja -C build install
