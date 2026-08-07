@@ -6,3 +6,22 @@
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
 make build
 make PREFIX=/usr DESTDIR="$1" install
+
+# Upstream's driftwm-session runs the compositor as a systemd user service and
+# exits with an error when systemctl is missing, so a display manager can never
+# start a session here. Replaced with an OpenRC-friendly version that keeps the
+# login-shell re-exec: that is what reads /etc/profile, where XDG_RUNTIME_DIR is
+# created on this system (no pam_systemd, pam_elogind or pam_rundir).
+cat > "$1/usr/bin/driftwm-session" <<'EOF'
+#!/bin/sh
+if [ -z "$_DRIFTWM_WRAPPER" ]; then
+    export _DRIFTWM_WRAPPER=1
+    exec "${SHELL:-/bin/sh}" -l -c "$0 $*"
+fi
+
+exec driftwm "$@"
+EOF
+chmod 755 "$1/usr/bin/driftwm-session"
+
+# The systemd units upstream installs are useless without a user manager.
+rm -rf "$1/usr/lib/systemd"
