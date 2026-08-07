@@ -28,8 +28,8 @@ pidfile="/run/seatd.pid"
 
 depend()
 {
-	need dev
-	before display-manager
+	need devfs
+	before ly
 }
 EOF
 chmod 755 "$1/etc/init.d/seatd"
