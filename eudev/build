@@ -12,3 +12,42 @@
     --disable-static
 make -j$(nproc)
 make DESTDIR="$1" install
+
+# Upstream eudev ships no OpenRC service here. Without the daemon running, the
+# devices under /dev/input exist (devtmpfs makes them) but carry no ID_INPUT*
+# properties in the udev database — and libinput enumerates through udev and
+# filters on exactly those, so a compositor comes up with no keyboard or mouse.
+install -dm755 "$1/etc/init.d"
+cat > "$1/etc/init.d/udev" <<'EOF'
+#!/sbin/openrc-run
+
+description="Device event managing daemon"
+
+depend()
+{
+	need devfs
+	before seatd
+}
+
+start()
+{
+	ebegin "Starting udevd"
+	/usr/sbin/udevd --daemon
+	eend $?
+
+	# Tag the devices that already existed before the daemon started.
+	ebegin "Populating udev database"
+	udevadm trigger --type=subsystems --action=add
+	udevadm trigger --type=devices --action=add
+	udevadm settle --timeout=30
+	eend 0
+}
+
+stop()
+{
+	ebegin "Stopping udevd"
+	udevadm control --exit 2>/dev/null || killall udevd 2>/dev/null
+	eend 0
+}
+EOF
+chmod 755 "$1/etc/init.d/udev"
