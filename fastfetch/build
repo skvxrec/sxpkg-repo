@@ -1,0 +1,10 @@
+#!/bin/sh
+# Optional backends (vulkan, opencl, dbus, ...) are detected at configure time
+# and simply skipped when absent, so no extra dependencies are needed here.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+cmake -B build \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF
+cmake --build build -j$(nproc)
+DESTDIR="$1" cmake --install build

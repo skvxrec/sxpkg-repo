@@ -1,0 +1,11 @@
+#!/bin/sh
+./configure \
+    --prefix=/usr \
+    --bindir=/usr/bin \
+    --sysconfdir=/etc \
+    --enable-etcdir=/etc/zsh \
+    --enable-multibyte \
+    --with-tcsetpgrp \
+    --disable-gdbm
+make -j$(nproc)
+make DESTDIR="$1" install
