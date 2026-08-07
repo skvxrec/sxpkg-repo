@@ -1,0 +1,11 @@
+#!/bin/sh
+# Prebuilt toolchain, same approach as the rust package: building zig from
+# source would need llvm, clang and lld first, which is a far bigger dependency
+# than the compiler itself.
+#
+# zig locates its standard library relative to the real binary, so the tree is
+# kept together under /usr/lib/zig and /usr/bin/zig is only a symlink.
+install -dm755 "$1/usr/lib/zig"
+cp -a zig lib "$1/usr/lib/zig/"
+install -dm755 "$1/usr/bin"
+ln -sf ../lib/zig/zig "$1/usr/bin/zig"

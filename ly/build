@@ -1,0 +1,10 @@
+#!/bin/sh
+# X11 support is off: this is a Wayland-only setup, and disabling it drops the
+# libxcb dependency. The init system has to be stated explicitly, otherwise ly
+# installs a systemd unit.
+zig build installexe \
+    -Dinit_system=openrc \
+    -Denable_x11_support=false \
+    -Dprefix_directory=/usr \
+    -Dconfig_directory=/etc \
+    -Ddest_directory="$1"
