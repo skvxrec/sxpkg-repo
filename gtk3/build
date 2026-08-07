@@ -1,5 +1,5 @@
 #!/bin/sh
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-meson setup build --prefix=/usr --libdir=/usr/lib -Dbuildtype=release -Dintrospection=false -Ddemos=false -Dexamples=false -Dtests=false -Dx11_backend=false -Dwayland_backend=true -Dprint_backends=file
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib -Dbuildtype=release -Dintrospection=false -Ddemos=false -Dexamples=false -Dtests=false -Dx11_backend=false -Dwayland_backend=true -Dprint_backends=file
 ninja -C build
 DESTDIR="$1" ninja -C build install

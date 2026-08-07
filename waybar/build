@@ -1,5 +1,5 @@
 #!/bin/sh
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-meson setup build --prefix=/usr --libdir=/usr/lib -Dbuildtype=release -Dman-pages=disabled -Dtests=disabled -Dpulseaudio=disabled -Dmpd=disabled -Dsndio=disabled -Djack=disabled -Dupower_glib=disabled -Dlibnl=enabled -Dsystemd=disabled -Dexperimental=false
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib -Dbuildtype=release -Dman-pages=disabled -Dtests=disabled -Dpulseaudio=disabled -Dmpd=disabled -Dsndio=disabled -Djack=disabled -Dupower_glib=disabled -Dlibnl=enabled -Dsystemd=disabled -Dexperimental=false
 ninja -C build
 DESTDIR="$1" ninja -C build install

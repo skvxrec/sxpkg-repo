@@ -15,7 +15,7 @@ void free_sized (void *__ptr, size_t __size);
 void free_aligned_sized (void *__ptr, size_t __alignment, size_t __size);
 HDR
 
-meson setup build --prefix=/usr --libdir=/usr/lib -Dbuildtype=release \
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib -Dbuildtype=release \
     -Dtests=false -Dintrospection=disabled \
     -Dc_args="-include $PWD/free_sized_decl.h"
 ninja -C build
