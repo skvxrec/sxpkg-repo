@@ -1,9 +1,13 @@
 #!/bin/sh
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+# xkbregistry needs libxml2, which is not in the repo. It only provides the
+# layout-listing API used by graphical settings tools, nothing a compositor
+# needs, so it stays off.
 meson setup build \
     --prefix=/usr \
     --libdir=/usr/lib \
     -Denable-docs=false \
+    -Denable-xkbregistry=false \
     -Dbuildtype=release
 ninja -C build
 DESTDIR="$1" ninja -C build install
