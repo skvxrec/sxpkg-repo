@@ -1,0 +1,9 @@
+meson
+ninja
+pkgconf
+glib
+dbus
+libxml2
+libX11
+libXtst
+libXi

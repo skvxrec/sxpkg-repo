@@ -20,3 +20,4 @@ libXrandr
 libXext
 libX11
 libxcb
+at-spi2-core

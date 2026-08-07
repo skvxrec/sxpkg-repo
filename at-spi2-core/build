@@ -1,0 +1,12 @@
+#!/bin/sh
+# Provides atk-bridge-2.0, which gtk3 requires unconditionally when the X11
+# backend is enabled — and the X11 backend is needed because prebuilt apps like
+# firefox link against gdk_x11_* symbols even when they run under wayland.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    -Dbuildtype=release \
+    -Dintrospection=disabled \
+    -Ddocs=false \
+    -Dsystemd_user_dir=no
+ninja -C build
+DESTDIR="$1" ninja -C build install
