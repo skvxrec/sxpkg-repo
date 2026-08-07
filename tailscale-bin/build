@@ -1,0 +1,31 @@
+#!/bin/sh
+# Prebuilt: tailscale is written in Go and there is no go toolchain in the repo.
+# Named -bin to keep it obvious which packages are built from source and which
+# are not.
+install -Dm755 tailscale  "$1/usr/bin/tailscale"
+install -Dm755 tailscaled "$1/usr/sbin/tailscaled"
+
+install -dm755 "$1/etc/init.d"
+cat > "$1/etc/init.d/tailscaled" <<'EOS'
+#!/sbin/openrc-run
+
+description="Tailscale mesh network daemon"
+
+command="/usr/sbin/tailscaled"
+command_args="--state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=41641"
+command_background="yes"
+pidfile="/run/tailscaled.pid"
+
+depend()
+{
+	need net
+	after network
+}
+
+start_pre()
+{
+	checkpath -d -m 0755 /var/lib/tailscale
+	checkpath -d -m 0755 /run/tailscale
+}
+EOS
+chmod 755 "$1/etc/init.d/tailscaled"
