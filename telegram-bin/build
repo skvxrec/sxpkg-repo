@@ -1,0 +1,7 @@
+#!/bin/sh
+# Prebuilt: the official tarball bundles Qt. Building from source would mean
+# building Qt6 first, which is comparable in size to the whole gtk3 chain.
+# Named -bin to keep source-built and prebuilt packages distinguishable.
+install -Dm755 Telegram "$1/usr/lib/telegram/Telegram"
+install -dm755 "$1/usr/bin"
+ln -sf ../lib/telegram/Telegram "$1/usr/bin/telegram"

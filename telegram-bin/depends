@@ -1,0 +1,9 @@
+fontconfig
+freetype
+libX11
+libxcb
+libxkbcommon
+wayland
+glib
+dbus
+alsa-lib
