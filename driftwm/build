@@ -19,6 +19,11 @@ if [ -z "$_DRIFTWM_WRAPPER" ]; then
     exec "${SHELL:-/bin/sh}" -l -c "$0 $*"
 fi
 
+# GTK autolaunches a session bus and fails without one, which stops waybar.
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && command -v dbus-run-session >/dev/null 2>&1; then
+    exec dbus-run-session -- driftwm "$@"
+fi
+
 exec driftwm "$@"
 EOF
 chmod 755 "$1/usr/bin/driftwm-session"

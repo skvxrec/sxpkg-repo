@@ -8,3 +8,4 @@ eudev
 wayland
 libdrm
 pkgconf
+dbus
