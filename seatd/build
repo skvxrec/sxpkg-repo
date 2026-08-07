@@ -22,7 +22,9 @@ cat > "$1/etc/init.d/seatd" <<'EOF'
 description="Seat management daemon"
 
 command="/usr/bin/seatd"
-command_args="-g video"
+# No "-g video" here: this system has only the root user and the root group, so
+# seatd would refuse to start on a missing group. Once a normal user exists,
+# create a video group and add -g video back.
 command_background="yes"
 pidfile="/run/seatd.pid"
 
