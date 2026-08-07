@@ -1,0 +1,10 @@
+#!/bin/sh
+# Data-only release: the plain-text zone files are compiled into the binary
+# format with zic, which glibc provides. The tarball extracts flat, with no
+# top-level directory.
+install -dm755 "$1/usr/share/zoneinfo"
+for f in africa antarctica asia australasia europe northamerica southamerica \
+         etcetera backward factory; do
+    [ -f "$f" ] || continue
+    zic -d "$1/usr/share/zoneinfo" "$f"
+done
