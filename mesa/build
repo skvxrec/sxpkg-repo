@@ -1,21 +1,29 @@
 #!/bin/sh
 PYVER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 export PYTHONPATH=/usr/lib/python$PYVER/site-packages
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
 rm -rf build
+# Only libgbm is wanted from mesa: it is the loader that picks up the
+# proprietary backend at /usr/lib64/gbm/nvidia-drm_gbm.so. EGL, GL and GLES all
+# come from the NVIDIA driver, so building mesa's own would drop a second
+# libGL.so.1 / libEGL.so.1 on top of it.
 meson setup build \
     --prefix=/usr \
+    --libdir=/usr/lib64 \
     -Dcpp_args="-D__GTHREAD_COND_INIT={}" \
-    -Dgallium-drivers=nouveau,softpipe \
+    -Dgbm=enabled \
+    -Dgbm-backends-path=/usr/lib64/gbm \
+    -Dplatforms=wayland \
+    -Dgallium-drivers= \
     -Dvulkan-drivers= \
-    -Dglx=dri \
-    -Dopengl=true \
+    -Dopengl=false \
+    -Degl=disabled \
     -Dgles1=disabled \
     -Dgles2=disabled \
+    -Dglx=disabled \
+    -Dglvnd=disabled \
     -Dllvm=disabled \
     -Dshared-llvm=disabled \
-    -Dplatforms=x11 \
-    -Dglvnd=disabled \
     -Dgallium-vdpau=disabled \
     -Dgallium-va=disabled \
     -Dbuildtype=release
