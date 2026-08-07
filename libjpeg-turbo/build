@@ -1,0 +1,5 @@
+#!/bin/sh
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release -DENABLE_STATIC=OFF
+cmake --build build -j$(nproc)
+DESTDIR="$1" cmake --install build

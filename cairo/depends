@@ -1,0 +1,7 @@
+meson
+ninja
+pixman
+freetype
+fontconfig
+libpng
+glib

@@ -1,0 +1,7 @@
+meson
+ninja
+gtk3
+glibmm
+cairomm
+pangomm
+atkmm

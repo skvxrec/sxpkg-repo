@@ -1,0 +1,6 @@
+meson
+ninja
+pcre2
+libffi
+zlib
+python

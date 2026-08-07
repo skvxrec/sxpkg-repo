@@ -1,0 +1,10 @@
+meson
+ninja
+gtkmm3
+gtk-layer-shell
+jsoncpp
+fmt
+spdlog
+wayland
+wayland-protocols
+libinput

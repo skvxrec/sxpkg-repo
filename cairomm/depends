@@ -1,0 +1,4 @@
+meson
+ninja
+cairo
+libsigc++

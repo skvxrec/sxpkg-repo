@@ -1,0 +1,7 @@
+meson
+ninja
+cairo
+harfbuzz
+fribidi
+glib
+fontconfig

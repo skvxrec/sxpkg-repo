@@ -1,0 +1,13 @@
+meson
+ninja
+glib
+cairo
+pango
+gdk-pixbuf
+atk
+libepoxy
+fribidi
+harfbuzz
+wayland
+wayland-protocols
+libxkbcommon
