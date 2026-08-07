@@ -1,0 +1,13 @@
+#!/bin/sh
+# The only font here was JetBrains Mono, so fontconfig resolved sans-serif and
+# serif to a monospace face and application UIs had nothing proportional to draw
+# with. DejaVu covers sans, serif and mono with wide unicode coverage.
+install -dm755 "$1/usr/share/fonts/dejavu"
+install -m644 ttf/*.ttf "$1/usr/share/fonts/dejavu/"
+install -dm755 "$1/etc/fonts/conf.d"
+for f in 20-unhint-small-dejavu-sans.conf 20-unhint-small-dejavu-sans-mono.conf \
+         20-unhint-small-dejavu-serif.conf 57-dejavu-sans.conf \
+         57-dejavu-sans-mono.conf 57-dejavu-serif.conf; do
+    [ -f "fontconfig/$f" ] && install -m644 "fontconfig/$f" "$1/etc/fonts/conf.d/"
+done
+exit 0
