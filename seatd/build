@@ -11,3 +11,25 @@ meson setup build --prefix=/usr --libdir=/usr/lib \
   -Dman-pages=disabled
 ninja -C build
 DESTDIR="$1" ninja -C build install
+
+# Upstream ships no OpenRC service, and a compositor started by a display
+# manager runs as a normal user, so it needs the seatd daemon to hand out DRM
+# and input devices.
+install -dm755 "$1/etc/init.d"
+cat > "$1/etc/init.d/seatd" <<'EOF'
+#!/sbin/openrc-run
+
+description="Seat management daemon"
+
+command="/usr/bin/seatd"
+command_args="-g video"
+command_background="yes"
+pidfile="/run/seatd.pid"
+
+depend()
+{
+	need dev
+	before display-manager
+}
+EOF
+chmod 755 "$1/etc/init.d/seatd"
