@@ -1,0 +1,4 @@
+#!/bin/sh
+./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc --disable-static
+make -j$(nproc)
+make DESTDIR="$1" install
