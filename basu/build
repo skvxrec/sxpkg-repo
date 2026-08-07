@@ -1,0 +1,8 @@
+#!/bin/sh
+# Standalone sd-bus, extracted from systemd. mako needs an sd-bus provider and
+# the other choices (libsystemd, libelogind) do not exist on this system.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    -Dbuildtype=release -Daudit=disabled
+ninja -C build
+DESTDIR="$1" ninja -C build install
