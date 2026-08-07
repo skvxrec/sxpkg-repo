@@ -1,0 +1,5 @@
+#!/bin/sh
+# Pure zsh, nothing to compile: the plugin tree is dropped under
+# /usr/share/zsh/plugins and sourced from ~/.zshrc.
+install -dm755 "$1/usr/share/zsh/plugins/powerlevel10k"
+cp -a . "$1/usr/share/zsh/plugins/powerlevel10k/"
