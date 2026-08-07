@@ -1,7 +1,13 @@
 #!/bin/sh
+# Option names are the ones seatd 0.8 actually defines; "logind"/"libseat" do
+# not exist and made meson bail out. logind is off (this system is OpenRC), and
+# man-pages defaults to auto, which would require scdoc.
 meson setup build --prefix=/usr --libdir=/usr/lib \
-  -Dlogind=disabled \
+  -Dlibseat-logind=disabled \
+  -Dlibseat-seatd=enabled \
+  -Dlibseat-builtin=enabled \
   -Dserver=enabled \
-  -Dlibseat=enabled
+  -Dexamples=disabled \
+  -Dman-pages=disabled
 ninja -C build
 DESTDIR="$1" ninja -C build install
