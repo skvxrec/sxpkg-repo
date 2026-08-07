@@ -1,0 +1,17 @@
+#!/bin/sh
+# GTK autolaunches a session bus and fails without one ("Cannot autolaunch
+# D-Bus without X11 $DISPLAY"), so waybar needs this even though nothing here
+# uses D-Bus services directly.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    --sysconfdir=/etc --localstatedir=/var \
+    -Dbuildtype=release \
+    -Dsystemd=disabled \
+    -Dselinux=disabled \
+    -Dapparmor=disabled \
+    -Ddoxygen_docs=disabled \
+    -Dducktype_docs=disabled \
+    -Dxml_docs=disabled \
+    -Dmodular_tests=disabled
+ninja -C build
+DESTDIR="$1" ninja -C build install
