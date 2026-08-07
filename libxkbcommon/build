@@ -1,8 +1,8 @@
 #!/bin/sh
 export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-# xkbregistry needs libxml2, which is not in the repo. It only provides the
-# layout-listing API used by graphical settings tools, nothing a compositor
-# needs, so it stays off.
+# xkbregistry was off at first to avoid pulling in libxml2, since a compositor
+# does not need it. waybar does require it, so libxml2 is packaged now and the
+# registry is built.
 meson setup build \
     --prefix=/usr \
     --libdir=/usr/lib \
