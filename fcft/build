@@ -1,0 +1,6 @@
+#!/bin/sh
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    -Dbuildtype=release -Ddocs=disabled -Dgrapheme-shaping=disabled -Drun-shaping=disabled -Dtest-text-shaping=false
+ninja -C build
+DESTDIR="$1" ninja -C build install

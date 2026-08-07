@@ -1,0 +1,12 @@
+meson
+ninja
+pkgconf
+fcft
+tllist
+wayland
+wayland-protocols
+libxkbcommon
+pixman
+libpng
+freetype
+fontconfig

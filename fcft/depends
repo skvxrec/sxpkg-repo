@@ -1,0 +1,8 @@
+meson
+ninja
+pkgconf
+tllist
+freetype
+fontconfig
+pixman
+harfbuzz
