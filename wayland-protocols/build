@@ -1,4 +1,9 @@
 #!/bin/sh
-meson setup build --prefix=/usr --libdir=/usr/lib
+# Tests need libwayland and wayland-scanner, and 1.49 falls back to building
+# wayland as a subproject when it looks for them. The protocol XML is all that
+# is wanted here.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+meson setup build --wrap-mode=nofallback --prefix=/usr --libdir=/usr/lib \
+    -Dbuildtype=release -Dtests=false
 ninja -C build
 DESTDIR="$1" ninja -C build install
