@@ -1,0 +1,9 @@
+cmake
+ninja
+pkgconf
+vulkan-headers
+vulkan-loader
+wayland
+libX11
+libxcb
+glslang
