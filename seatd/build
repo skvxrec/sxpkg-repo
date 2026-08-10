@@ -22,9 +22,10 @@ cat > "$1/etc/init.d/seatd" <<'EOF'
 description="Seat management daemon"
 
 command="/usr/bin/seatd"
-# No "-g video" here: this system has only the root user and the root group, so
-# seatd would refuse to start on a missing group. Once a normal user exists,
-# create a video group and add -g video back.
+# -g video: members of that group may talk to seatd, which a session started by
+# a display manager needs. The group is created by the installer/useradd step.
+#
+command_args="-g video"
 command_background="yes"
 pidfile="/run/seatd.pid"
 
