@@ -1,0 +1,15 @@
+#!/bin/sh
+# Neovim vendors its own dependencies (luajit, libuv, msgpack, tree-sitter,
+# libvterm, ...) and builds them in a first pass. That keeps a dozen libraries
+# out of the repo at the cost of fetching them during the build.
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+
+cmake -S cmake.deps -B .deps -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build .deps
+
+cmake -B build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DENABLE_TRANSLATIONS=OFF
+cmake --build build
+DESTDIR="$1" cmake --install build
