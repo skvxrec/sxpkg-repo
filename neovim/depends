@@ -1,5 +1,4 @@
 cmake
 ninja
 make
-unzip
 curl
